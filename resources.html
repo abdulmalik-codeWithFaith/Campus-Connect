@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resources | CampusConnect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<!-- This is the ADMIN version (teal, with upload and delete).
+     For students: use the student sidebar, remove "theme-admin",
+     and delete the Upload button and the delete buttons. -->
+<body class="dashboard-page theme-admin">
+
+  <div class="app">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" id="sidebar">
+      <a href="admin-dashboard.html" class="logo">
+        <span class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </span>
+        CampusConnect
+      </a>
+
+      <span class="role-tag">Admin Portal</span>
+
+      <nav class="side-nav">
+        <a href="admin-dashboard.html">
+          <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>
+          Dashboard
+        </a>
+        <a href="create-announcement.html">
+          <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+          Create Announcement
+        </a>
+        <a href="my-announcements.html">
+          <svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
+          My Announcements
+        </a>
+        <a href="resources.html" class="active">
+          <svg viewBox="0 0 24 24"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9l-1.5-2.2A2 2 0 0 0 9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg>
+          Resources
+        </a>
+        <a href="profile.html">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          Profile
+        </a>
+        <a href="settings.html">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>
+          Settings
+        </a>
+      </nav>
+
+      <a href="login.html" class="logout" id="logoutBtn">
+        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+        Logout
+      </a>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ============ MAIN AREA ============ -->
+    <div class="content">
+
+      <header class="topbar">
+        <button class="icon-btn" id="menuBtn" aria-label="Open menu">
+          <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <span class="topbar-title">Resources</span>
+        <span class="avatar">AY</span>
+      </header>
+
+      <main class="main">
+
+        <div class="page-header">
+          <div>
+            <h1>Resources</h1>
+            <p class="muted">Timetables, forms and guides that students can download.</p>
+          </div>
+          <!-- JS practice: open #uploadModal when clicked -->
+          <button class="btn btn-primary btn-lg" id="uploadBtn">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+            Upload Resource
+          </button>
+        </div>
+
+        <!-- Category filters + search -->
+        <div class="toolbar">
+          <div class="filter-tabs" id="filterTabs">
+            <button class="filter-tab active" data-filter="all">All</button>
+            <button class="filter-tab" data-filter="timetable">Timetables</button>
+            <button class="filter-tab" data-filter="form">Forms</button>
+            <button class="filter-tab" data-filter="guide">Guides</button>
+          </div>
+
+          <div class="search">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+            <input type="search" id="searchInput" placeholder="Search resources...">
+          </div>
+        </div>
+
+        <!-- Resource cards. data-category and data-title help with filtering. -->
+        <section class="resource-grid" id="resourceGrid">
+
+          <article class="resource-card" data-category="timetable" data-title="exam timetable 2026/2027">
+            <div class="resource-top">
+              <div class="file-icon pdf">PDF</div>
+              <span class="badge badge-general">Everyone</span>
+            </div>
+            <div>
+              <h3>Exam Timetable 2026/2027</h3>
+              <p class="resource-meta">1.2 MB &middot; Uploaded Oct 6, 2026</p>
+            </div>
+            <div class="resource-footer">
+              <a href="#" class="btn btn-primary" download>
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download
+              </a>
+              <button class="action-btn danger" data-delete="1" aria-label="Delete" title="Delete">
+                <svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+              </button>
+            </div>
+          </article>
+
+          <article class="resource-card" data-category="guide" data-title="course registration guide">
+            <div class="resource-top">
+              <div class="file-icon pdf">PDF</div>
+              <span class="badge badge-level-card">300 Level</span>
+            </div>
+            <div>
+              <h3>Course Registration Guide</h3>
+              <p class="resource-meta">860 KB &middot; Uploaded Oct 3, 2026</p>
+            </div>
+            <div class="resource-footer">
+              <a href="#" class="btn btn-primary" download>
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download
+              </a>
+              <button class="action-btn danger" data-delete="2" aria-label="Delete" title="Delete">
+                <svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+              </button>
+            </div>
+          </article>
+
+          <article class="resource-card" data-category="form" data-title="change of department form">
+            <div class="resource-top">
+              <div class="file-icon doc">DOC</div>
+              <span class="badge badge-general">Everyone</span>
+            </div>
+            <div>
+              <h3>Change of Department Form</h3>
+              <p class="resource-meta">240 KB &middot; Uploaded Sep 29, 2026</p>
+            </div>
+            <div class="resource-footer">
+              <a href="#" class="btn btn-primary" download>
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download
+              </a>
+              <button class="action-btn danger" data-delete="3" aria-label="Delete" title="Delete">
+                <svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+              </button>
+            </div>
+          </article>
+
+          <article class="resource-card" data-category="timetable" data-title="lecture timetable 100 level">
+            <div class="resource-top">
+              <div class="file-icon xls">XLS</div>
+              <span class="badge badge-level-card">100 Level</span>
+            </div>
+            <div>
+              <h3>Lecture Timetable (100 Level)</h3>
+              <p class="resource-meta">95 KB &middot; Uploaded Sep 25, 2026</p>
+            </div>
+            <div class="resource-footer">
+              <a href="#" class="btn btn-primary" download>
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download
+              </a>
+              <button class="action-btn danger" data-delete="4" aria-label="Delete" title="Delete">
+                <svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+              </button>
+            </div>
+          </article>
+
+          <article class="resource-card" data-category="guide" data-title="student handbook">
+            <div class="resource-top">
+              <div class="file-icon pdf">PDF</div>
+              <span class="badge badge-general">Everyone</span>
+            </div>
+            <div>
+              <h3>Student Handbook</h3>
+              <p class="resource-meta">4.8 MB &middot; Uploaded Sep 12, 2026</p>
+            </div>
+            <div class="resource-footer">
+              <a href="#" class="btn btn-primary" download>
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download
+              </a>
+              <button class="action-btn danger" data-delete="5" aria-label="Delete" title="Delete">
+                <svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+              </button>
+            </div>
+          </article>
+
+          <article class="resource-card" data-category="form" data-title="hostel application form">
+            <div class="resource-top">
+              <div class="file-icon doc">DOC</div>
+              <span class="badge badge-level-card">100 Level</span>
+            </div>
+            <div>
+              <h3>Hostel Application Form</h3>
+              <p class="resource-meta">180 KB &middot; Uploaded Sep 8, 2026</p>
+            </div>
+            <div class="resource-footer">
+              <a href="#" class="btn btn-primary" download>
+                <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                Download
+              </a>
+              <button class="action-btn danger" data-delete="6" aria-label="Delete" title="Delete">
+                <svg viewBox="0 0 24 24"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+              </button>
+            </div>
+          </article>
+
+        </section>
+
+        <!-- Empty state: JS practice, remove "hidden" when no cards match -->
+        <div class="empty-state" id="emptyState" hidden>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9l-1.5-2.2A2 2 0 0 0 9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg>
+          </div>
+          <h3>No resources found</h3>
+          <p>Try a different search or category, or upload a new resource.</p>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ========== UPLOAD MODAL (JS practice: remove "hidden" to show) ========== -->
+  <div class="modal-backdrop" id="uploadModal" hidden>
+    <form class="modal modal-form form-panel" role="dialog" aria-modal="true" aria-labelledby="uploadTitle" id="uploadForm" novalidate>
+      <h3 id="uploadTitle">Upload resource</h3>
+      <p>Add a file for students to download.</p>
+
+      <div class="field">
+        <label class="label" for="resTitle">Title</label>
+        <input type="text" id="resTitle" name="title" placeholder="e.g. Academic Calendar 2026/2027">
+        <p class="error" id="resTitleError" hidden></p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="resCategory">Category</label>
+        <select id="resCategory" name="category">
+          <option value="timetable">Timetable</option>
+          <option value="form">Form</option>
+          <option value="guide">Guide</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label class="label" for="resAudience">Available to</label>
+        <select id="resAudience" name="audience">
+          <option value="everyone">Everyone</option>
+          <option value="100">100 Level</option>
+          <option value="200">200 Level</option>
+          <option value="300">300 Level</option>
+          <option value="400">400 Level</option>
+          <option value="500">500 Level</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <span class="label">File</span>
+        <label class="dropzone" for="resFile">
+          <span class="stat-icon" style="margin:0">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
+          </span>
+          <span>
+            <strong>Click to choose a file</strong>
+            <span>PDF, DOCX, XLSX or images up to 5MB</span>
+          </span>
+          <input type="file" id="resFile" name="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png">
+        </label>
+        <p class="file-name" id="resFileName" hidden></p>
+        <p class="error" id="resFileError" hidden></p>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="uploadCancel">Cancel</button>
+        <button type="submit" class="btn btn-primary">Upload</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ========== DELETE CONFIRMATION ========== -->
+  <div class="modal-backdrop" id="deleteModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="deleteTitle">
+      <h3 id="deleteTitle">Delete resource?</h3>
+      <p>This can't be undone. Students will no longer be able to download it.</p>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="deleteCancel">Keep it</button>
+        <button type="button" class="btn btn-danger" id="deleteConfirm">Yes, delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== TOAST ========== -->
+  <div class="toast" id="toast" hidden>
+    <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+    <span id="toastText">Resource uploaded</span>
+  </div>
+
+  <!-- Add your JavaScript here later:
+  <script src="resources.js"></script> -->
+</body>
+</html>

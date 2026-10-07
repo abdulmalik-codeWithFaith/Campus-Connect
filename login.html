@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | CampusConnect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-layout">
+
+    <!-- LEFT: form -->
+    <main class="auth-main">
+      <div class="auth-box">
+        <a href="index.html" class="logo">
+          <span class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </span>
+          CampusConnect
+        </a>
+
+        <h1>Welcome back</h1>
+        <p class="auth-sub">Login to see your latest campus announcements.</p>
+
+        <form id="loginForm" novalidate>
+
+          <!-- Login as: Student / Admin / Super Admin -->
+          <div class="field">
+            <span class="label">Login as</span>
+            <div class="toggle toggle-3">
+              <input type="radio" name="role" id="roleStudent" value="student" checked>
+              <label for="roleStudent">
+                <svg viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                Student
+              </label>
+
+              <input type="radio" name="role" id="roleAdmin" value="admin">
+              <label for="roleAdmin">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                Admin
+              </label>
+
+              <input type="radio" name="role" id="roleSuper" value="super">
+              <label for="roleSuper">
+                <svg viewBox="0 0 24 24"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>
+                Super Admin
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@university.edu" autocomplete="email">
+            <p class="error" id="emailError" hidden></p>
+          </div>
+
+          <div class="field">
+            <label class="label" for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password">
+            <p class="error" id="passwordError" hidden></p>
+          </div>
+
+          <div class="form-options">
+            <label class="check" for="remember">
+              <input type="checkbox" id="remember" name="remember">
+              Remember me
+            </label>
+            <a href="#" class="text-link" id="forgotLink">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitBtn">Login</button>
+
+          <!-- JS practice: show login errors (e.g. "Incorrect email or password") here -->
+          <p class="form-message form-message-error" id="formMessage" hidden></p>
+        </form>
+
+        <p class="auth-switch">Don't have an account? <a href="signup.html">Sign up</a></p>
+      </div>
+    </main>
+
+    <!-- RIGHT: photo panel (hidden on small screens) -->
+    <aside class="auth-side">
+      <img src="https://unsplash.com/photos/Dg8WzlOE1as/download?force=true&w=1100"
+           alt="Students studying together at a long table" onerror="this.remove()">
+      <div class="auth-side-overlay">
+        <blockquote>
+          Exam timetables, notices and resources, all from verified school administrators.
+        </blockquote>
+        <span>Your campus, in one place</span>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- auth.js has the shared helpers, so it must load first -->
+  <script src="auth.js"></script>
+  <script src="login.js"></script>
+</body>
+</html>

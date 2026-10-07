@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | CampusConnect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<!-- No theme class = indigo, the student color.
+     (Admin pages use theme-admin, Super Admin uses theme-super.) -->
+<body class="dashboard-page">
+
+  <div class="app">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" id="sidebar">
+      <a href="student-dashboard.html" class="logo">
+        <span class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </span>
+        CampusConnect
+      </a>
+
+      <span class="role-tag">Student</span>
+
+      <nav class="side-nav">
+        <a href="student-dashboard.html" class="active">
+          <svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>
+          Dashboard
+        </a>
+        <a href="student-announcements.html">
+          <svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
+          Announcements
+        </a>
+        <a href="resources.html">
+          <svg viewBox="0 0 24 24"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9l-1.5-2.2A2 2 0 0 0 9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg>
+          Resources
+        </a>
+        <a href="profile.html">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
+          Profile
+        </a>
+        <a href="settings.html">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></svg>
+          Settings
+        </a>
+      </nav>
+
+      <a href="login.html" class="logout" id="logoutBtn">
+        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+        Logout
+      </a>
+    </aside>
+
+    <div class="overlay" id="overlay"></div>
+
+    <!-- ============ MAIN AREA ============ -->
+    <div class="content">
+
+      <header class="topbar">
+        <button class="icon-btn" id="menuBtn" aria-label="Open menu">
+          <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <span class="topbar-title">Dashboard</span>
+        <span class="avatar" id="userInitials">AS</span>
+      </header>
+
+      <main class="main">
+
+        <!-- Welcome -->
+        <div class="page-header">
+          <div>
+            <h1 id="greeting">Good morning, Abdulmalik</h1>
+            <p class="muted">Here's what's happening on campus today.</p>
+          </div>
+          <span class="level-badge-lg" id="levelBadge">
+            <svg viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <span id="levelText">300 Level</span>
+          </span>
+        </div>
+
+        <!-- Summary cards (JS fills the numbers from the feed below) -->
+        <section class="stats-cards" style="grid-template-columns:repeat(3,1fr)">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
+            </div>
+            <strong id="newCount">0</strong>
+            <span>New Announcements</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg>
+            </div>
+            <strong id="levelCount">0</strong>
+            <span>Level Updates</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9l-1.5-2.2A2 2 0 0 0 9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg>
+            </div>
+            <strong id="resourceCount">12</strong>
+            <span>Available Resources</span>
+          </div>
+        </section>
+
+        <!-- Feed header -->
+        <div class="panel-head">
+          <h2 style="font-size:20px">Latest announcements</h2>
+        </div>
+
+        <div class="toolbar">
+          <div class="filter-tabs" id="filterTabs">
+            <button class="filter-tab active" data-filter="all">All</button>
+            <button class="filter-tab" data-filter="general">General</button>
+            <button class="filter-tab" data-filter="level">My Level</button>
+          </div>
+        </div>
+
+        <div class="legend">
+          <span><i></i> General: for everyone</span>
+          <span><i class="level"></i> Level-specific: only for your level</span>
+        </div>
+
+        <!-- Loading skeletons (JS practice: show these, then hide when "loaded") -->
+        <div class="feed" id="loading" hidden>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+          <div class="skeleton"></div>
+        </div>
+
+        <!-- ANNOUNCEMENT FEED
+             data-type: "general" or "level"
+             data-level: the level a level-specific card is for
+             data-new: "true" if the student hasn't opened it yet -->
+        <section class="feed" id="feed">
+
+          <article class="feed-card general" data-type="general" data-new="true">
+            <div class="feed-top">
+              <div class="feed-tags">
+                <span class="badge badge-general">General</span>
+                <span class="badge badge-new">New</span>
+              </div>
+              <span class="feed-time">Today, 8:15 AM</span>
+            </div>
+            <h3>2026/2027 Examination Timetable Released</h3>
+            <p>The first-semester examination timetable is now available for all levels. Check your venues and report 30 minutes early.</p>
+            <div class="feed-bottom">
+              <div class="feed-meta">
+                <span>
+                  <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                  Examinations Office
+                </span>
+                <span>
+                  <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0"/></svg>
+                  Everyone
+                </span>
+                <span class="attachment-chip">
+                  <svg viewBox="0 0 24 24"><path d="m21 12-9 9a5 5 0 0 1-7-7l9-9a3.5 3.5 0 0 1 5 5l-9 9a2 2 0 0 1-3-3l8-8"/></svg>
+                  Exam_Timetable_2026.pdf
+                </span>
+              </div>
+              <a href="announcement-details.html?id=1" class="btn btn-primary">View Announcement</a>
+            </div>
+          </article>
+
+          <article class="feed-card general" data-type="general">
+            <div class="feed-top">
+              <div class="feed-tags">
+                <span class="badge badge-general">General</span>
+              </div>
+              <span class="feed-time">Yesterday, 4:40 PM</span>
+            </div>
+            <h3>Electricity Maintenance Notice</h3>
+            <p>Power will be off in the Science Complex on Saturday from 8 AM to 4 PM. Labs and the Science Library will be closed.</p>
+            <div class="feed-bottom">
+              <div class="feed-meta">
+                <span>
+                  <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                  Facilities Management
+                </span>
+                <span>
+                  <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0"/></svg>
+                  Everyone
+                </span>
+              </div>
+              <a href="announcement-details.html?id=2" class="btn btn-outline">View Announcement</a>
+            </div>
+          </article>
+
+          <article class="feed-card level" data-type="level" data-level="300" data-new="true">
+            <div class="feed-top">
+              <div class="feed-tags">
+                <span class="badge badge-level-card">300 Level only</span>
+                <span class="badge badge-new">New</span>
+              </div>
+              <span class="feed-time">Oct 5, 11:20 AM</span>
+            </div>
+            <h3>Departmental Meeting</h3>
+            <p>All 300 Level Computer Science students should attend on Friday at 2 PM in Hall B. Attendance is compulsory.</p>
+            <div class="feed-bottom">
+              <div class="feed-meta">
+                <span>
+                  <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                  Dept. of Computer Science
+                </span>
+                <span>
+                  <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0"/></svg>
+                  300 Level
+                </span>
+              </div>
+              <a href="announcement-details.html?id=3" class="btn btn-outline">View Announcement</a>
+            </div>
+          </article>
+
+          <article class="feed-card level" data-type="level" data-level="300">
+            <div class="feed-top">
+              <div class="feed-tags">
+                <span class="badge badge-level-card">300 Level only</span>
+              </div>
+              <span class="feed-time">Oct 3, 9:00 AM</span>
+            </div>
+            <h3>New Semester Registration Guidelines</h3>
+            <p>Course registration closes on 16 October. Read the updated unit requirements before you register.</p>
+            <div class="feed-bottom">
+              <div class="feed-meta">
+                <span>
+                  <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                  Academic Affairs
+                </span>
+                <span>
+                  <svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0"/></svg>
+                  300 Level
+                </span>
+                <span class="attachment-chip">
+                  <svg viewBox="0 0 24 24"><path d="m21 12-9 9a5 5 0 0 1-7-7l9-9a3.5 3.5 0 0 1 5 5l-9 9a2 2 0 0 1-3-3l8-8"/></svg>
+                  Registration_Guide.pdf
+                </span>
+              </div>
+              <a href="announcement-details.html?id=4" class="btn btn-outline">View Announcement</a>
+            </div>
+          </article>
+
+        </section>
+
+        <!-- Empty state (JS shows this when no cards match the filter) -->
+        <div class="empty-state" id="emptyState" hidden>
+          <div class="stat-icon">
+            <svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>
+          </div>
+          <h3>No announcements here</h3>
+          <p>You're all caught up. New announcements will appear here.</p>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- auth.js must load first -->
+  <script src="auth.js"></script>
+  <script src="student-dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+/* ==========================================================
+   CampusConnect - Auth pages (Sign up / Login)
+   Loaded after style.css, so it reuses the same colors and buttons.
+   ========================================================== */
+
+:root {
+  --error: #dc2626;
+  --error-soft: #fef2f2;
+  --warn-soft: #fef3c7;
+  --warn-text: #854d0e;
+  --success: #16a34a;
+}
+
+/* ---------- Layout: form on the left, photo on the right ---------- */
+.auth-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.auth-main {
+  display: flex;
+  justify-content: center;
+  padding: 32px 20px;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+}
+
+.auth-box h1 {
+  font-size: 30px;
+  margin: 32px 0 8px;
+}
+
+.auth-sub {
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+/* ---------- Form fields ---------- */
+.field {
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.field-row {
+  display: flex;
+  gap: 16px;
+}
+
+.label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="password"],
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field textarea {
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+/* JS practice: add the "invalid" class to an input when validation fails */
+.field input.invalid,
+.field select.invalid,
+.field textarea.invalid {
+  border-color: var(--error);
+  background: var(--error-soft);
+}
+
+.error {
+  color: var(--error);
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* ---------- Student / Admin toggle ---------- */
+.toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 5px;
+}
+
+/* Hide the real radio buttons, but keep them working */
+.toggle input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggle label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.toggle label svg {
+  width: 18px;
+  height: 18px;
+}
+
+.toggle input:checked + label {
+  background: var(--primary);
+  color: #fff;
+}
+
+.toggle input:focus-visible + label {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* ---------- Show/hide fields based on account type (no JavaScript) ----------
+   :has() lets the form react to which radio button is checked. */
+.admin-fields {
+  display: none;
+}
+
+.signup-form:has(#typeAdmin:checked) .admin-fields {
+  display: block;
+}
+
+.signup-form:has(#typeAdmin:checked) .student-fields {
+  display: none;
+}
+
+/* ---------- Admin notice ---------- */
+.notice {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--warn-soft);
+  color: var(--warn-text);
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+.notice svg {
+  margin-top: 2px;
+}
+
+/* ---------- Buttons & messages ---------- */
+.btn-block {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.form-message {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.auth-switch {
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 24px;
+}
+
+.auth-switch a {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Photo panel ---------- */
+.auth-side {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #818cf8, #4f46e5);
+}
+
+.auth-side img {
+  position: absolute;
+  inset: 0;
+}
+
+.auth-side-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 120px 48px 48px;
+  color: #fff;
+  background: linear-gradient(to top, rgba(30, 27, 75, 0.92), rgba(30, 27, 75, 0));
+}
+
+.auth-side-overlay blockquote {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 12px;
+  max-width: 420px;
+}
+
+.auth-side-overlay span {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+@media (max-width: 900px) {
+  .auth-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-side {
+    display: none;
+  }
+
+  .auth-box h1 {
+    font-size: 26px;
+    margin-top: 24px;
+  }
+}
+
+@media (max-width: 520px) {
+  .field-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+/* ==========================================================
+   Login page additions
+   ========================================================== */
+
+/* Three-option toggle (Student / Admin / Super Admin) */
+.toggle-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.toggle-3 label {
+  font-size: 13px;
+  padding: 10px 6px;
+  gap: 6px;
+  text-align: center;
+}
+
+/* Remember me + Forgot password row */
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.check input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+.text-link {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+/* Error version of the form message */
+.form-message-error {
+  background: var(--error-soft);
+  color: var(--error);
+}
+
+@media (max-width: 420px) {
+  .toggle-3 label svg {
+    display: none;
+  }
+}

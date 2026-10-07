@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | CampusConnect</title>
+  <!-- style.css gives us the colors, buttons and base styles. auth.css is only for login/signup pages. -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-layout">
+
+    <!-- LEFT: form -->
+    <main class="auth-main">
+      <div class="auth-box">
+        <a href="index.html" class="logo">
+          <span class="logo-icon">
+            <svg viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+          </span>
+          CampusConnect
+        </a>
+
+        <h1>Create your account</h1>
+        <p class="auth-sub">Join CampusConnect to get campus updates in one place.</p>
+
+        <form id="signupForm" class="signup-form" novalidate>
+
+          <!-- Account type. The radio buttons are styled as a toggle, and the
+               CSS (auth.css) shows/hides the extra fields with no JavaScript. -->
+          <div class="field">
+            <span class="label">I am a</span>
+            <div class="toggle">
+              <input type="radio" name="accountType" id="typeStudent" value="student" checked>
+              <label for="typeStudent">
+                <svg viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                Student
+              </label>
+
+              <input type="radio" name="accountType" id="typeAdmin" value="admin">
+              <label for="typeAdmin">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                Admin
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" for="fullName">Full name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g. Abdulmalik Sani" autocomplete="name">
+            <p class="error" id="fullNameError" hidden></p>
+          </div>
+
+          <div class="field">
+            <label class="label" for="email">Email address</label>
+            <input type="email" id="email" name="email" placeholder="you@university.edu" autocomplete="email">
+            <p class="error" id="emailError" hidden></p>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label class="label" for="password">Password</label>
+              <input type="password" id="password" name="password" placeholder="At least 8 characters" autocomplete="new-password">
+              <p class="error" id="passwordError" hidden></p>
+            </div>
+            <div class="field">
+              <label class="label" for="confirmPassword">Confirm password</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Repeat password" autocomplete="new-password">
+              <p class="error" id="confirmPasswordError" hidden></p>
+            </div>
+          </div>
+
+          <!-- STUDENT-ONLY FIELDS -->
+          <div class="student-fields">
+            <div class="field">
+              <label class="label" for="level">Level</label>
+              <select id="level" name="level">
+                <option value="" disabled>Select your level</option>
+                <option value="100">100 Level</option>
+                <option value="200">200 Level</option>
+                <option value="300" selected>300 Level</option>
+                <option value="400">400 Level</option>
+                <option value="500">500 Level</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- ADMIN-ONLY FIELDS -->
+          <div class="admin-fields">
+            <div class="field">
+              <label class="label" for="department">Department / Faculty</label>
+              <input type="text" id="department" name="department" placeholder="e.g. Faculty of Science">
+              <p class="error" id="departmentError" hidden></p>
+            </div>
+
+            <div class="field">
+              <label class="label" for="adminInfo">Admin information</label>
+              <textarea id="adminInfo" name="adminInfo" rows="3" placeholder="Your role and staff ID, e.g. Examinations Officer, Staff ID 04521"></textarea>
+            </div>
+
+            <div class="notice">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+              <p>
+                <strong>Verification required.</strong>
+                Admin accounts must be verified by the Super Admin before you can publish announcements.
+              </p>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-lg btn-block" id="submitBtn">Create account</button>
+
+          <!-- JS practice: show a success message here after signup -->
+          <p class="form-message" id="formMessage" hidden></p>
+        </form>
+
+        <p class="auth-switch">Already have an account? <a href="login.html">Login</a></p>
+      </div>
+    </main>
+
+    <!-- RIGHT: photo panel (hidden on small screens) -->
+    <aside class="auth-side">
+      <img src="https://unsplash.com/photos/PkAiydV3VuY/download?force=true&w=1100"
+           alt="Two students smiling in a classroom" onerror="this.remove()">
+      <div class="auth-side-overlay">
+        <blockquote>
+          "I used to miss notices in group chats. Now everything from my department is in one place."
+        </blockquote>
+        <span>300 Level Student</span>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- auth.js has the shared helpers, so it must load first -->
+  <script src="auth.js"></script>
+  <script src="signup.js"></script>
+</body>
+</html>

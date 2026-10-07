@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusConnect | Stay Updated With Everything Happening On Campus</title>
+  <meta name="description" content="Receive school announcements, timetables, notices and resources from verified administrators.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!--
+    IMAGES
+    Photos use Unsplash's free download links (unsplash.com/photos/ID/download).
+    To change a picture, replace the ID in the src. If an image fails to load,
+    the gradient behind it shows instead, so the layout never breaks.
+    Photo IDs used:
+      Dg8WzlOE1as  - Students studying at a long table (Jaykumar Bherwani)
+      PkAiydV3VuY  - Two students in a classroom (Vitaly Gariev)
+  -->
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">
+        <span class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </span>
+        CampusConnect
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#about">About</a>
+        <div class="nav-actions-mobile">
+          <a href="login.html" class="btn btn-outline">Login</a>
+          <a href="signup.html" class="btn btn-primary">Get Started</a>
+        </div>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="login.html" class="btn btn-outline">Login</a>
+        <a href="signup.html" class="btn btn-primary">Get Started</a>
+      </div>
+
+      <!-- JS practice: toggle the "open" class on #navLinks when clicked -->
+      <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-text">
+          <span class="pill">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            Verified school administrators only
+          </span>
+          <h1>Stay Updated With Everything Happening On Campus</h1>
+          <p>
+            Receive school announcements, timetables, notices and resources
+            straight from verified administrators, all in one simple place.
+          </p>
+          <div class="hero-buttons">
+            <a href="signup.html" class="btn btn-primary btn-lg">Get Started</a>
+            <a href="#features" class="btn btn-outline btn-lg">Learn More</a>
+          </div>
+          <div class="trust">
+            <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Free for students
+            <svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg> Set up in 1 minute
+          </div>
+        </div>
+
+        <!-- Photo with floating announcement cards -->
+        <div class="hero-visual">
+          <div class="photo photo-hero">
+            <img src="https://unsplash.com/photos/Dg8WzlOE1as/download?force=true&w=1000"
+                 alt="Students studying together at a long table" onerror="this.remove()">
+          </div>
+
+          <article class="ann-card general float-top">
+            <div class="ann-top">
+              <span class="badge badge-general">General</span>
+              <small>Today, 8:15 AM</small>
+            </div>
+            <h3>2026/2027 Examination Timetable Released</h3>
+            <small class="author">Examinations Office</small>
+          </article>
+
+          <article class="ann-card level float-bottom">
+            <div class="ann-top">
+              <span class="badge badge-level-card">300 Level only</span>
+              <small>Oct 5</small>
+            </div>
+            <h3>Departmental Meeting</h3>
+            <small class="author">Dept. of Computer Science</small>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+      <div class="container stats-grid">
+        <div><strong>10,000+</strong><span>Students connected</span></div>
+        <div><strong>250+</strong><span>Verified admins</span></div>
+        <div><strong>1,500+</strong><span>Announcements shared</span></div>
+        <div><strong>5</strong><span>Levels supported</span></div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section" id="features">
+      <div class="container split">
+        <div class="split-image">
+          <div class="photo photo-tall">
+            <img src="https://unsplash.com/photos/PkAiydV3VuY/download?force=true&w=900"
+                 alt="Two students smiling in a classroom" onerror="this.remove()">
+          </div>
+        </div>
+
+        <div>
+          <span class="eyebrow">Features</span>
+          <h2>Everything students need, nothing they don't</h2>
+          <p class="lead">Simple tools that keep you informed without the noise.</p>
+
+          <div class="feature-list">
+            <div class="feature">
+              <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg></div>
+              <div>
+                <h3>Important Announcements</h3>
+                <p>Never miss exam notices, timetables or urgent campus alerts.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="icon-box"><svg viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></div>
+              <div>
+                <h3>Level-Based Updates</h3>
+                <p>See messages meant for your level, filtered automatically.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9l-1.5-2.2A2 2 0 0 0 9 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/></svg></div>
+              <div>
+                <h3>School Resources</h3>
+                <p>Download guides, forms and timetables in one place.</p>
+              </div>
+            </div>
+            <div class="feature">
+              <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+              <div>
+                <h3>Verified Administrators</h3>
+                <p>Only approved school staff can publish announcements.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section section-alt" id="how-it-works">
+      <div class="container split split-reverse">
+        <div>
+          <span class="eyebrow">How It Works</span>
+          <h2>Get started in under a minute</h2>
+
+          <ol class="steps">
+            <li>
+              <span class="step-number">1</span>
+              <div>
+                <h3>Create an account</h3>
+                <p>Sign up with your school email address.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-number">2</span>
+              <div>
+                <h3>Select your level</h3>
+                <p>Choose your level from 100 to 500.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-number">3</span>
+              <div>
+                <h3>Receive relevant announcements</h3>
+                <p>Get updates meant for you, right on your dashboard.</p>
+              </div>
+            </li>
+          </ol>
+          <a href="signup.html" class="btn btn-primary">Create your account</a>
+        </div>
+
+        <div class="split-image">
+          <div class="photo photo-tall">
+            <img src="https://unsplash.com/photos/Dg8WzlOE1as/download?force=true&w=900"
+                 alt="Students collaborating in a library" onerror="this.remove()">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container about">
+        <span class="eyebrow">About</span>
+        <h2>Built for students, trusted by administrators</h2>
+        <p class="lead">
+          CampusConnect helps universities share what matters with the right
+          students, quickly and reliably. No more missed notices on crowded
+          group chats.
+        </p>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta">
+          <div class="cta-bg">
+            <img src="https://unsplash.com/photos/PkAiydV3VuY/download?force=true&w=1400"
+                 alt="" onerror="this.remove()">
+          </div>
+          <div class="cta-content">
+            <h2>Ready to stay in the loop?</h2>
+            <p>Join your classmates and never miss an important update again.</p>
+            <a href="signup.html" class="btn btn-white btn-lg">Get Started</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a href="#home" class="logo">
+        <span class="logo-icon">
+          <svg viewBox="0 0 24 24"><path d="m22 10-10-5L2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        </span>
+        CampusConnect
+      </a>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="login.html">Login</a>
+      </div>
+      <small>
+        &copy; 2026 CampusConnect. Photos by
+        <a href="https://unsplash.com/photos/Dg8WzlOE1as" target="_blank" rel="noopener">Jaykumar Bherwani</a> and
+        <a href="https://unsplash.com/photos/PkAiydV3VuY" target="_blank" rel="noopener">Vitaly Gariev</a>
+        on Unsplash.
+      </small>
+    </div>
+  </footer>
+
+  <!-- Add your JavaScript here later:
+  <script src="script.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,1067 @@
+/* ==========================================================
+   CampusConnect - Dashboard layout (Student / Admin / Super Admin)
+   Loaded after style.css. Add a theme class on <body> to change the accent:
+     (none)         -> indigo  (student)
+     theme-admin    -> teal    (admin)
+     theme-super    -> violet  (super admin)
+   ========================================================== */
+
+.theme-admin {
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --primary-soft: #e6f7f5;
+}
+
+.theme-super {
+  --primary: #7c3aed;
+  --primary-dark: #6d28d9;
+  --primary-soft: #f1ebff;
+}
+
+:root {
+  --sidebar-w: 260px;
+  --published: #15803d;
+  --published-soft: #dcfce7;
+}
+
+/* ---------- App layout ---------- */
+.app {
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  min-height: 100vh;
+}
+
+.content {
+  min-width: 0; /* lets the table scroll instead of stretching the page */
+}
+
+.main {
+  padding: 32px;
+  max-width: 1040px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 22px 16px;
+  background: var(--card);
+  border-right: 1px solid var(--border);
+}
+
+.role-tag {
+  align-self: flex-start;
+  margin: 18px 4px 20px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.side-nav a,
+.logout {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.side-nav a:hover,
+.logout:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.side-nav a.active {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.logout:hover {
+  color: #dc2626;
+}
+
+/* ---------- Top bar (mobile only) ---------- */
+.topbar {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.topbar-title {
+  font-weight: 700;
+}
+
+.icon-btn {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px;
+  cursor: pointer;
+  color: var(--text);
+  display: grid;
+  place-items: center;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.overlay {
+  display: none;
+}
+
+/* ---------- Page header ---------- */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+
+.page-header h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.page-header .muted {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* ---------- Stat cards ---------- */
+.stats-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.stat-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  margin-bottom: 14px;
+}
+
+.stat-card strong {
+  display: block;
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.stat-card span {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* ---------- Panel + table ---------- */
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 20px;
+}
+
+.panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.panel-head h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.text-link {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  text-align: left;
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.table th {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.table tbody tr:hover {
+  background: var(--bg);
+}
+
+/* ---------- Badges (extra ones for dashboards) ---------- */
+.badge-published {
+  background: var(--published-soft);
+  color: var(--published);
+}
+
+.badge-draft {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.badge-verified {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.badge-verified svg {
+  width: 13px;
+  height: 13px;
+}
+
+/* ---------- Empty state ---------- */
+.empty-state {
+  text-align: center;
+  padding: 40px 16px;
+}
+
+.empty-state[hidden] {
+  display: none;
+}
+
+.empty-state .stat-icon {
+  margin: 0 auto 14px;
+  width: 54px;
+  height: 54px;
+}
+
+.empty-state h3 {
+  margin-bottom: 4px;
+}
+
+.empty-state p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+
+/* ---------- Tip ---------- */
+.tip {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--primary-soft);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  font-size: 14px;
+}
+
+.tip svg {
+  color: var(--primary);
+  margin-top: 2px;
+}
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+@media (max-width: 1000px) {
+  .stats-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .app {
+    grid-template-columns: 1fr;
+  }
+
+  /* Sidebar slides in from the left when JS adds the "open" class */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 40;
+    width: var(--sidebar-w);
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .overlay.open {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.45);
+    z-index: 30;
+  }
+
+  .topbar {
+    display: flex;
+  }
+
+  .main {
+    padding: 20px 16px 40px;
+  }
+
+  .page-header .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-card {
+    padding: 16px;
+  }
+
+  .stat-card strong {
+    font-size: 24px;
+  }
+}
+
+/* ==========================================================
+   Forms, announcement preview, modal & toast
+   (used by Create Announcement and other form pages)
+   ========================================================== */
+
+.page-header-simple {
+  margin-bottom: 24px;
+}
+
+.page-header-simple h1 {
+  font-size: 28px;
+  margin-bottom: 4px;
+}
+
+/* Form + preview side by side */
+.create-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.form-panel .field {
+  margin-bottom: 20px;
+}
+
+.form-panel .label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.optional {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.form-panel input[type="text"],
+.form-panel select,
+.form-panel textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-panel textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.form-panel input:focus,
+.form-panel select:focus,
+.form-panel textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+/* JS practice: add "invalid" when validation fails */
+.form-panel .invalid {
+  border-color: #dc2626;
+  background: #fef2f2;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.error {
+  color: #dc2626;
+  font-size: 13px;
+  margin-top: 6px;
+}
+
+/* File upload box */
+.dropzone {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border: 2px dashed var(--border);
+  border-radius: 14px;
+  background: var(--bg);
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.dropzone:hover,
+.dropzone:focus-within {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.dropzone input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.dropzone strong {
+  display: block;
+  font-size: 14px;
+}
+
+.dropzone span {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.file-name {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.file-name[hidden] {
+  display: none;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+  padding-top: 20px;
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--muted);
+}
+
+.btn-ghost:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Preview */
+.preview-panel {
+  position: sticky;
+  top: 24px;
+}
+
+.preview-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 14px;
+}
+
+.preview-label svg {
+  width: 16px;
+  height: 16px;
+}
+
+.preview-box {
+  background: var(--bg);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.preview-box .ann-card {
+  width: 100%;
+  box-shadow: none;
+  padding: 18px;
+}
+
+.preview-box .ann-card h3 {
+  font-size: 17px;
+  margin: 12px 0 6px;
+  word-break: break-word;
+}
+
+.preview-box .ann-card p {
+  color: var(--muted);
+  font-size: 14px;
+  white-space: pre-line;
+  word-break: break-word;
+}
+
+.preview-box .ann-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.preview-note {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+/* Modal (confirmation) */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.modal-backdrop[hidden] {
+  display: none;
+}
+
+.modal {
+  width: 100%;
+  max-width: 400px;
+  background: var(--card);
+  border-radius: 20px;
+  padding: 26px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.3);
+}
+
+.modal h3 {
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.modal p {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 22px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* Toast (success message) */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 110;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--text);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.toast[hidden] {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .create-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .preview-panel {
+    position: static;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-actions .btn {
+    flex: 1 1 100%;
+  }
+}
+
+/* ==========================================================
+   My Announcements: toolbar, filters, row actions
+   ========================================================== */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.filter-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+
+.filter-tab:hover {
+  background: var(--primary-soft);
+}
+
+/* JS practice: move the "active" class to the clicked tab */
+.filter-tab.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.filter-tab .count {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.search {
+  position: relative;
+  width: 100%;
+  max-width: 280px;
+}
+
+.search svg {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: var(--muted);
+}
+
+.search input {
+  width: 100%;
+  padding: 10px 14px 10px 38px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--card);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+
+.search input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.row-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.action-btn {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.action-btn:hover {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.action-btn.danger:hover {
+  background: #fef2f2;
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.table td .cell-sub {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.btn-danger {
+  background: #dc2626;
+  border-color: #dc2626;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background: #b91c1c;
+}
+
+/* Table inside a panel with no padding */
+.panel-flush {
+  padding: 8px 12px;
+}
+
+@media (max-width: 600px) {
+  .search {
+    max-width: none;
+  }
+}
+
+/* ==========================================================
+   Resources: file cards
+   ========================================================== */
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.resource-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.resource-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.resource-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* File type icon colors */
+.file-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.file-icon.pdf { background: #fee2e2; color: #dc2626; }
+.file-icon.doc { background: #dbeafe; color: #2563eb; }
+.file-icon.xls { background: #dcfce7; color: #16a34a; }
+.file-icon.img { background: #f3e8ff; color: #9333ea; }
+
+.resource-card h3 {
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.resource-meta {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.resource-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.resource-footer .btn {
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+/* Modal form spacing */
+.modal.modal-form {
+  max-width: 460px;
+}
+
+.modal-form .field {
+  margin-bottom: 16px;
+}
+
+.modal-form .modal-actions {
+  margin-top: 8px;
+}
+
+/* ==========================================================
+   Upload Resource page: selected file, progress, guidelines
+   ========================================================== */
+
+/* Bigger drop area for the full upload page */
+.dropzone-lg {
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 36px 20px;
+}
+
+.dropzone-lg .stat-icon {
+  margin: 0 auto 4px !important;
+  width: 54px;
+  height: 54px;
+}
+
+/* JS practice: add "dragover" while a file is dragged over the drop area */
+.dropzone.dragover {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+}
+
+/* Selected file row */
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--card);
+}
+
+.file-item[hidden] {
+  display: none;
+}
+
+.file-item .file-icon {
+  flex-shrink: 0;
+}
+
+.file-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.file-info strong {
+  display: block;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-info span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* Progress bar (loading state) */
+.progress {
+  height: 6px;
+  margin-top: 6px;
+  border-radius: 999px;
+  background: var(--border);
+  overflow: hidden;
+}
+
+.progress[hidden] {
+  display: none;
+}
+
+/* JS practice: change this element's width from 0% to 100% */
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--primary);
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+
+/* Upload tips */
+.guidelines {
+  list-style: none;
+  display: grid;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.guidelines li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.guidelines svg {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  color: var(--primary);
+}
+
+.panel + .panel {
+  margin-top: 20px;
+}
+
+.preview-panel .resource-card {
+  box-shadow: none;
+}
+
+.preview-panel .resource-card:hover {
+  transform: none;
+}
+
+/* Two fields side by side inside a form */
+.field-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 520px) {
+  .field-row-2 {
+    grid-template-columns: 1fr;
+  }
+}
